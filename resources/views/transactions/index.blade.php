@@ -28,7 +28,7 @@
                                             class="btn btn-sm btn-primary">View</a>
                                         <a href="{{ route('transactions.export', $transaction) }}"
                                             class="btn btn-sm btn-info">Export</a>
-                                        <a href="{{ route('transactions.duplicate', $transaction->uuid) }}"
+                                        <a href="{{ route('transactions.duplicate', $transaction) }}"
                                            class="btn btn-sm btn-warning">Duplicate</a>
                                     </td>
                                 </tr>
