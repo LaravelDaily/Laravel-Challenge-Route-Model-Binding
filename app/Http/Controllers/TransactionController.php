@@ -15,11 +15,14 @@ class TransactionController extends Controller
 
     public function show(Transaction $transaction)
     {
+        $transaction->load('user');
         return view('transactions.show', compact('transaction'));
     }
 
     public function export(Transaction $transaction)
     {
+        $transaction->load('user');
+
         return view('transactions.export', compact('transaction'));
     }
 
