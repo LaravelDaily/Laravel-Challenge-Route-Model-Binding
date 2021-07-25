@@ -16,12 +16,21 @@ use App\Http\Controllers\TransactionController;
 
 Route::redirect('/', '/transactions');
 
-Route::get('transactions/{transactions}/export',
+Route::get('transactions/{transaction}/export',
     [TransactionController::class, 'export'])
-    ->name('transactions.export');
+    ->name('transactions.export')
+    ->missing(function(){
+        return response()->view('transactions.notfound');
+    });
 
-Route::resource('transactions', TransactionController::class);
+Route::resource('transactions', TransactionController::class)
+    ->missing(function(){
+        return response()->view('transactions.notfound');
+    });
 
-Route::get('transactions/{transaction}/duplicate',
+Route::get('transactions/{transaction:uuid}/duplicate',
     [TransactionController::class, 'duplicate'])
-    ->name('transactions.duplicate');
+    ->name('transactions.duplicate')
+    ->missing(function(){
+        return view('transactions.notfound');
+    });
