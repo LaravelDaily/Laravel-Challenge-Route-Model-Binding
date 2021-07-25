@@ -20,7 +20,8 @@ Route::get('transactions/{transactions}/export',
     [TransactionController::class, 'export'])
     ->name('transactions.export');
 
-Route::resource('transactions', TransactionController::class);
+Route::resource('transactions', TransactionController::class)
+    ->only(['index', 'show']);
 
 Route::get('transactions/{transaction}/duplicate',
     [TransactionController::class, 'duplicate'])
