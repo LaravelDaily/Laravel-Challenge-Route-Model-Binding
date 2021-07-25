@@ -16,12 +16,19 @@ use App\Http\Controllers\TransactionController;
 
 Route::redirect('/', '/transactions');
 
-Route::get('transactions/{transactions}/export',
+//passing correct model parameter {transaction}
+Route::get('transactions/{transaction}/export',
     [TransactionController::class, 'export'])
     ->name('transactions.export');
 
 Route::resource('transactions', TransactionController::class);
 
+
+//With missing function callBack i faced an error regards cookies
+//I found a solution of passing response() method and it works
 Route::get('transactions/{transaction}/duplicate',
     [TransactionController::class, 'duplicate'])
-    ->name('transactions.duplicate');
+    ->name('transactions.duplicate')
+    ->missing(function(){
+    	return response()->view('transactions.notfound');
+    });
