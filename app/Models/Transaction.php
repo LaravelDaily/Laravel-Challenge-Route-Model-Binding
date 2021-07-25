@@ -15,4 +15,10 @@ class Transaction extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    // Task 3 second way
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
 }

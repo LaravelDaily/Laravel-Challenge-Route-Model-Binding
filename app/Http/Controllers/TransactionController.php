@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+// Task 1
+use App\Models\Transaction;
 
 class TransactionController extends Controller
 {
