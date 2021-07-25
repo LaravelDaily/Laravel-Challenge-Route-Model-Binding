@@ -101,6 +101,8 @@ Expected result, after the fix, is a page for checking details for export:
 
 ## Task 3. Duplicate by UUID
 
+### The task
+
 Duplicate the task should happen with UUID as a URL parameter, it's one of the database fields: `transactions.uuid`.
 
 When you click **Duplicate**, you may have two kinds of errors, randomly:
@@ -111,3 +113,21 @@ When you click **Duplicate**, you may have two kinds of errors, randomly:
 Expected result, after the fix, is a page for checking details for duplication:
 
 ![Transactions Duplicate](https://laraveldaily.com/wp-content/uploads/2021/07/Screenshot-2021-07-24-at-10.09.50.png)
+
+### The solution
+<details>
+    <summary> CLICK ME to see the solution ! </summary>
+
+    Why do we receive a 404 error ? because Laravel will try to find a transaction by its id but we are giving it a uuid ! So Laravel is comparing uuid to ids which may lead to all sorts of nonesens (404 or worse grab a field that has an id that is equal to that uuid)
+
+    A first solution would be to pass the id directly but that would be kind of cheating as the task specifies that we should duplicate by uuid (imagine a real life scenario where this would make more sense)
+
+    Another solution is to tell Laravel to compare whats is passed in the route with the UUID and not with the id.
+
+    => We can do that in two different ways :
+
+    1. Enforce using uuids in all routes in which case we would need to override the method getRouteKeyName() and returning 'uuid' => the problem with this solution is that we know the other routes need to function with the id 
+
+    2. Specify that for this route, we need to check the uuid and it can easily be done by specifying it in the route definition and that's our solution
+
+</details>
