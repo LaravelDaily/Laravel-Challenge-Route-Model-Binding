@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
+// i have added this import up here. to me it was missing and it worked.
+
 class TransactionController extends Controller
 {
     public function index()
