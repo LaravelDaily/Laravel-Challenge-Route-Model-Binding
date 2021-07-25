@@ -22,6 +22,6 @@ Route::get('transactions/{transaction}/export',
 
 Route::resource('transactions', TransactionController::class);
 
-Route::get('transactions/{transaction}/duplicate',
+Route::get('transactions/{transaction:uuid}/duplicate',
     [TransactionController::class, 'duplicate'])
     ->name('transactions.duplicate');
