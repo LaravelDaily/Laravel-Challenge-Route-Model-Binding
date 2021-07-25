@@ -1,5 +1,7 @@
 # Laravel Challenge: Route Model Binding
 
+**UPDATE 10:42am UTC: Sorry I will stop reviewing the PRs, there's just too many of them, 50+ PRs in 5 hours! Will shoot a separate video in a few days, discussing the results, and for the correct answer check PRs from 1 to 4.**
+
 This is a demo-project which has **intentional** errors around Routing and [Route Model Binding](https://laravel.com/docs/8.x/routing#route-model-binding). 
 
 Your task is to fix those errors, by submitting a Pull Request.
