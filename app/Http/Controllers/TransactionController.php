@@ -28,6 +28,8 @@ class TransactionController extends Controller
 
     public function duplicate(Transaction $transaction)
     {
+        $transaction->load('user');
+
         return view('transactions.duplicate', compact('transaction'));
     }
 }
