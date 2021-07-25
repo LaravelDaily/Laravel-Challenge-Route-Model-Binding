@@ -28,4 +28,21 @@ class TransactionsTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    /**
+     * Test for task #2
+     *
+     * @testdox A Transaction's export information can be viewed by navigating to the uri /transactions/{id}/export
+     * @return void
+     */
+    public function test_transaction_can_be_exported()
+    {
+        $transaction = Transaction::factory()
+            ->for(User::factory())
+            ->create();
+
+        $response = $this->get("/transactions/{$transaction->id}/export");
+
+        $response->assertStatus(200);
+    }
 }
