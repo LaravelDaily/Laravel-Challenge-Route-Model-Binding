@@ -26,4 +26,15 @@ class TransactionsTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    /** @test */
+    public function an_transaction_should_export()
+    {
+        $transaction = Transaction::get()->random();
+        
+        $response = $this->get(route('transactions.export', $transaction));
+
+        $response->assertStatus(200)
+            ->assertSee($transaction->user->name);
+    }
 }
