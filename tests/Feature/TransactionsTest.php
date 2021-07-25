@@ -37,4 +37,34 @@ class TransactionsTest extends TestCase
         $response->assertStatus(200)
             ->assertSee($transaction->user->name);
     }
+
+    /** @test */
+    public function a_duplicate_transaction_should_load()
+    {
+        $transactions = Transaction::all();
+
+        $transaction = $transactions->first(function ($transaction) {
+            return ! is_numeric(substr($transaction->uuid, 0, 1));
+        });
+
+        $response = $this->get(route('transactions.duplicate', $transaction->uuid));
+
+        $response->assertStatus(200);
+    }
+
+    /** @test */
+    public function a_duplicate_transaction_should_show_correct_information()
+    {
+        $transactions = Transaction::all();
+
+        $transaction = $transactions->first(function ($transaction) {
+            return is_numeric(substr($transaction->uuid, 0, 1)) && ! is_numeric(substr($transaction->uuid, 1, 1));
+        });
+
+        $response = $this->get(route('transactions.duplicate', $transaction->uuid));
+
+        $response->assertStatus(200)
+            ->assertSee($transaction->description)
+            ->assertSee($transaction->created_at);
+    }
 }
