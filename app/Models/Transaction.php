@@ -9,6 +9,8 @@ class Transaction extends Model
 {
     use HasFactory;
 
+    protected $with = ['user'];
+
     protected $fillable = ['uuid', 'amount', 'description', 'user_id'];
 
     public function user()
