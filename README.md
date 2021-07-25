@@ -39,6 +39,8 @@ Good luck!
 
 ## Task 1. View
 
+### The task
+
 When you click **View**, the error should be something like this:
 
 ```
@@ -48,6 +50,18 @@ Target class [App\Http\Controllers\Transaction] does not exist.
 Expected result, after the fix, is a page with task details:
 
 ![Transactions show](https://laraveldaily.com/wp-content/uploads/2021/07/Screenshot-2021-07-24-at-10.02.46.png)
+
+### The solution
+<details>
+    <summary> CLICK ME to see the solution ! </summary>
+
+    The problem is that the Transactions model is *not* imported !
+
+    In the index method, the Transactions are grabbed correctly because of the usage of the full namespace (\App\Models\Transaction).
+
+    However, in the other methods, we are trying to call Transactions class without importing it so PHP tries, by default, to find a class named Transactions in the same namespace as the controller (App\Http\Controllers) which obviously does not exist hence the error => Target class [App\Http\Controllers\Transaction] does not exist.
+
+</details>
 
 ---
 
