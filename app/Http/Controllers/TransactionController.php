@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Models\Transaction;
+
 class TransactionController extends Controller
 {
     public function index()
