@@ -16,7 +16,7 @@ use App\Http\Controllers\TransactionController;
 
 Route::redirect('/', '/transactions');
 
-Route::get('transactions/{transactions}/export',
+Route::get('transactions/{transaction}/export',
     [TransactionController::class, 'export'])
     ->name('transactions.export');
 
