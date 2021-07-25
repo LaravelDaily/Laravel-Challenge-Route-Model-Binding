@@ -9,16 +9,17 @@
 
                 <div class="card-body">
                     <b>Please check details:</b>
+                    
                     <br />
-                    ID: {{ $transaction->id }}
+                    ID: {{ $transactions->id }}
                     <br />
-                    Description: {{ $transaction->description }}
+                    Description: {{ $transactions->description }}
                     <br />
-                    Amount: ${{ number_format($transaction->amount / 100, 2) }}
+                    Amount: ${{ number_format($transactions->amount / 100, 2) }}
                     <br />
-                    User: {{ $transaction->user->name }}
+                    User: {{ $transactions->user->name }}
                     <br />
-                    Created at: {{ $transaction->created_at }}
+                    Created at: {{ $transactions->created_at }}
                 </div>
             </div>
         </div>

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
+
+
 class TransactionController extends Controller
 {
     public function index()
@@ -16,9 +19,9 @@ class TransactionController extends Controller
         return view('transactions.show', compact('transaction'));
     }
 
-    public function export(Transaction $transaction)
+    public function export(Transaction $transactions)
     {
-        return view('transactions.export', compact('transaction'));
+        return view('transactions.export', compact('transactions'));
     }
 
     public function duplicate(Transaction $transaction)
