@@ -15,4 +15,11 @@ class Transaction extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    //to change the whole route model binding key use this otherwise continue with the route like(transaction:uuid)
+    
+    // public function getRouteKeyName()
+    // {
+    //     return 'uuid';
+    // }
 }
