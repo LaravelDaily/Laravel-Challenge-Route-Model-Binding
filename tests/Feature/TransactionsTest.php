@@ -12,72 +12,62 @@ class TransactionsTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected $transaction;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->transaction = Transaction::factory()
+            ->for(User::factory())
+            ->create();
+    }
+
     /**
-     * Test for task #1
-     *
      * @testdox A Transaction's information can be viewed by navigating to the uri /transactions/{id}
-     * @return void
+     * @group task_1
      */
     public function test_transaction_can_be_viewed()
     {
-        $transaction = Transaction::factory()
-            ->for(User::factory())
-            ->create();
-
-        $response = $this->get("/transactions/{$transaction->id}");
+        $response = $this->get("/transactions/{$this->transaction->id}");
 
         $response->assertStatus(200);
     }
 
     /**
-     * Test for task #2
-     *
      * @testdox A Transaction's export information can be viewed by navigating to the uri /transactions/{id}/export
-     * @return void
+     * @group task_2
      */
     public function test_transaction_can_be_exported()
     {
-        $transaction = Transaction::factory()
-            ->for(User::factory())
-            ->create();
-
-        $response = $this->get("/transactions/{$transaction->id}/export");
+        $response = $this->get("/transactions/{$this->transaction->id}/export");
 
         $response->assertStatus(200);
     }
 
     /**
-     * Test for task #3
-     *
      * @testdox A Transaction's information can be reviewed for duplication by navigating to the uri /transactions/{uuid}/duplicate
-     * @return void
+     * @group task_3
      */
     public function test_transaction_can_be_duplicated()
     {
-        $transaction = Transaction::factory()
-            ->for(User::factory())
-            ->create();
-
-        $response = $this->get("/transactions/{$transaction->uuid}/duplicate");
+        $response = $this->get("/transactions/{$this->transaction->uuid}/duplicate");
 
         $response->assertStatus(200);
     }
 
     /**
-     * Test for task #3
-     *
-     * @testdox The information shown when trying to duplicate a Transaction comes from the correct Transaction.
-     * @return void
+     * @testdox The information shown when trying to duplicate a Transaction comes from the correct Transaction
+     * @group task_3
      */
     public function test_transaction_duplicate_view_shows_correct_transaction()
     {
-        $transaction = Transaction::factory()
-            ->for(User::factory())
-            ->create();
+        $this->seed();
 
-        $response = $this->get("/transactions/{$transaction->uuid}/duplicate");
+        $response = $this->get("/transactions/{$this->transaction->uuid}/duplicate");
 
         // Check the $transaction variable inside the view has the correct id.
-        $response->assertViewHas(['transaction.id' => $transaction->id]);
+        $response->assertViewHas(['transaction.id' => $this->transaction->id]);
+        $response->assertSeeText("ID: {$this->transaction->id}");
     }
 }
