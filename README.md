@@ -1,5 +1,7 @@
 # Laravel Challenge: Route Model Binding
 
+**UPDATE 10:42am UTC: Sorry I will stop reviewing the PRs, there's just too many of them, 50+ PRs in 5 hours! Will shoot a separate video in a few days, discussing the results, and for the correct answer check PRs from 1 to 4.**
+
 This is a demo-project which has **intentional** errors around Routing and [Route Model Binding](https://laravel.com/docs/8.x/routing#route-model-binding). 
 
 Your task is to fix those errors, by submitting a Pull Request.
@@ -8,7 +10,7 @@ Your task is to fix those errors, by submitting a Pull Request.
 
 - Clone the repository with __git clone__
 - Copy __.env.example__ file to __.env__ and edit database credentials there
-- Run __composer install__
+- Run __composer install__ (if anyone got problems with composer on windows, try running it like this:  __composer install --ignore-platform-reqs__)
 - Run __php artisan key:generate__
 - Run __php artisan migrate --seed__ (it has some seeded data for your testing)
 - That's it: launch the main URL.
