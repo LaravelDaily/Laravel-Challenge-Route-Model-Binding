@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = ['uuid', 'amount', 'description', 'user_id'];
+  protected $fillable = ['uuid', 'amount', 'description', 'user_id'];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+  public function user()
+  {
+    return $this->belongsTo(User::class, 'user_id', 'id');
+  }
 }
