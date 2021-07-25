@@ -20,10 +20,10 @@ Route::get(
     'transactions/{transaction}',
     [TransactionController::class, 'show']
 )
-    ->name('transactions.export');
+    ->name('transactions.show');
 
 Route::get(
-    'transactions/{transactions}/export',
+    'transactions/{transaction}/export',
     [TransactionController::class, 'export']
 )
     ->name('transactions.export');
