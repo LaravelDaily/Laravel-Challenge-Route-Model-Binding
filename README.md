@@ -79,3 +79,10 @@ When you click **Duplicate**, you may have two kinds of errors, randomly:
 Expected result, after the fix, is a page for checking details for duplication:
 
 ![Transactions Duplicate](https://laraveldaily.com/wp-content/uploads/2021/07/Screenshot-2021-07-24-at-10.09.50.png)
+
+
+## Here is where i made changes
+web.php file line 23 to transations from transaction
+TransactionController line 5 added its import to the model
+export.blade.php line 19
+duplicate.blade.php line 19

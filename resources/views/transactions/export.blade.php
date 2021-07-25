@@ -16,7 +16,9 @@
                     <br />
                     Amount: ${{ number_format($transaction->amount / 100, 2) }}
                     <br />
-                    User: {{ $transaction->user->name }}
+                    User: {{ $transaction->user['name'] }}
+                    <!--here i changed from ->user->name to ->user['name'] because the result returns a result of the
+                        query and not an object instance that you can access like that-->
                     <br />
                     Created at: {{ $transaction->created_at }}
                 </div>
