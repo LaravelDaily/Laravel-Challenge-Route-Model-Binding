@@ -67,6 +67,8 @@ Expected result, after the fix, is a page with task details:
 
 ## Task 2. Export
 
+### The task
+
 You can perform this task only AFTER you finish the Task 1 above, otherwise you will get the same error as Task 1.
 
 When you click **Export**, the error should be something like this:
@@ -78,6 +80,22 @@ Attempt to read property "name" on null (View: /resources/views/transactions/exp
 Expected result, after the fix, is a page for checking details for export:
 
 ![Transactions Export](https://laraveldaily.com/wp-content/uploads/2021/07/Screenshot-2021-07-24-at-10.05.53.png)
+
+### The solution
+<details>
+    <summary> CLICK ME to see the solution ! </summary>
+
+    At first, you would think that the problem is in the relationship because its trying to read property name on null => meaning the user is not grabbed correctly.
+
+    After some investigation, you would find that the relationship is correctly defined in the model so it's time to check if the transaction is found at all ... and you would be surprised to find that the controller is not receiving any transaction !
+
+    So you go check the route model binding (if you don't know what this means, it's just that instead of passing the transaction's id to the controller, we pass all the transaction)
+
+    And here we find the (intentional) typo in the sense that the controller is expecting a variable named 'transaction' and the route is binding the model to a variable named 'transactions' (see the S)
+
+    => Solution = we remove the 'S' and everything works as expected
+
+</details>
 
 ---
 
