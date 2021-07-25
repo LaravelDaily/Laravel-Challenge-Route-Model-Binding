@@ -15,4 +15,10 @@ class Transaction extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    //Defining method to search a particular column: in this case search it's uuid
+    public function getRouteKeyName()
+    {
+    	return 'uuid';
+    }
 }
