@@ -45,4 +45,39 @@ class TransactionsTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    /**
+     * Test for task #3
+     *
+     * @testdox A Transaction's information can be reviewed for duplication by navigating to the uri /transactions/{uuid}/duplicate
+     * @return void
+     */
+    public function test_transaction_can_be_duplicated()
+    {
+        $transaction = Transaction::factory()
+            ->for(User::factory())
+            ->create();
+
+        $response = $this->get("/transactions/{$transaction->uuid}/duplicate");
+
+        $response->assertStatus(200);
+    }
+
+    /**
+     * Test for task #3
+     *
+     * @testdox The information shown when trying to duplicate a Transaction comes from the correct Transaction.
+     * @return void
+     */
+    public function test_transaction_duplicate_view_shows_correct_transaction()
+    {
+        $transaction = Transaction::factory()
+            ->for(User::factory())
+            ->create();
+
+        $response = $this->get("/transactions/{$transaction->uuid}/duplicate");
+
+        // Check the $transaction variable inside the view has the correct id.
+        $response->assertViewHas(['transaction.id' => $transaction->id]);
+    }
 }
