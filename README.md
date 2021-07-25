@@ -49,6 +49,11 @@ Expected result, after the fix, is a page with task details:
 
 ![Transactions show](https://laraveldaily.com/wp-content/uploads/2021/07/Screenshot-2021-07-24-at-10.02.46.png)
 
+### Solution
+The `Transaction` model binding in show, export and duplicate methods don't include the Fully Qualified Class Namespace `\App\Models\Transaction`.
+To fix the error, you may either:
+1. Add  `use \App\Models\Transaction` to the imports section of the class (I chose this one as it makes the code more readable)
+2. Or Replace `Transaction` in the above method's signature with the FQCN `\App\Models\Transaction`
 ---
 
 ## Task 2. Export
@@ -65,6 +70,13 @@ Expected result, after the fix, is a page for checking details for export:
 
 ![Transactions Export](https://laraveldaily.com/wp-content/uploads/2021/07/Screenshot-2021-07-24-at-10.05.53.png)
 
+### Solution
+The route parameter had been incorrectly named `transactions` in the `routes/web.php` and the variable in method signature named `transaction`.
+
+To solve this issue, both the uri param and method variable must share the same name.
+
+Whereas renaming the variable in the method signature to `$transactions` would fix the error, its illogical since only a single transaction is being passed; hence my decision to rename the route to `'transactions/{transaction}/export`
+
 ---
 
 ## Task 3. Duplicate by UUID
@@ -79,3 +91,6 @@ When you click **Duplicate**, you may have two kinds of errors, randomly:
 Expected result, after the fix, is a page for checking details for duplication:
 
 ![Transactions Duplicate](https://laraveldaily.com/wp-content/uploads/2021/07/Screenshot-2021-07-24-at-10.09.50.png)
+
+### Solution
+Since we are using a custom key (i.e `uuid`) to resolve the model besides the `id`, I specified the column in the route parameter definition.
