@@ -16,7 +16,7 @@
                     <br />
                     Amount: ${{ number_format($transaction->amount / 100, 2) }}
                     <br />
-                    User: {{ $transaction->user->name }}
+                    User: {{ $transaction->user ? $transaction->user->name : "Guest" }}
                     <br />
                     Created at: {{ $transaction->created_at }}
                 </div>
