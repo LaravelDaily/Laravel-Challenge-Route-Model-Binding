@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
+
 class TransactionController extends Controller
 {
     public function index()
     {
-        $transactions = \App\Models\Transaction::with('user')->get();
-
-        return view('transactions.index', compact('transactions'));
+        return view('transactions.index', ['transactions' => Transaction::with('user')->get()]);
     }
 
     public function show(Transaction $transaction)
