@@ -6,7 +6,6 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Transaction to Export') }}</div>
-
                 <div class="card-body">
                     <b>Please check details:</b>
                     <br />
