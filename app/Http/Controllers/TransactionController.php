@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
+
 class TransactionController extends Controller
 {
     public function index()
     {
-        $transactions = \App\Models\Transaction::with('user')->get();
+        $transactions = Transaction::with('user')->get();
 
         return view('transactions.index', compact('transactions'));
     }
@@ -18,6 +20,7 @@ class TransactionController extends Controller
 
     public function export(Transaction $transaction)
     {
+        $transaction->load('user');
         return view('transactions.export', compact('transaction'));
     }
 
