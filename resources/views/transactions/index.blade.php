@@ -19,19 +19,19 @@
                         </thead>
                         <tbody>
                             @foreach ($transactions as $transaction)
-                                <tr>
-                                    <td>{{ $transaction->id }}</td>
-                                    <td>${{ number_format($transaction->amount / 100, 2) }}</td>
-                                    <td>{{ $transaction->user->name }}</td>
-                                    <td>
-                                        <a href="{{ route('transactions.show', $transaction) }}"
-                                            class="btn btn-sm btn-primary">View</a>
-                                        <a href="{{ route('transactions.export', $transaction) }}"
-                                            class="btn btn-sm btn-info">Export</a>
-                                        <a href="{{ route('transactions.duplicate', $transaction->uuid) }}"
-                                           class="btn btn-sm btn-warning">Duplicate</a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>{{ $transaction->id }}</td>
+                                <td>${{ number_format($transaction->amount / 100, 2) }}</td>
+                                <td>{{ $transaction->user->name }}</td>
+                                <td>
+                                    <a href="{{ route('transactions.show', $transaction) }}"
+                                        class="btn btn-sm btn-primary">View</a>
+                                    <a href="{{ route('transactions.export', $transaction) }}"
+                                        class="btn btn-sm btn-info">Export</a>
+                                    <a href="{{ route('transactions.duplicate', $transaction->uuid) }}"
+                                        class="btn btn-sm btn-warning">Duplicate</a>
+                                </td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>
