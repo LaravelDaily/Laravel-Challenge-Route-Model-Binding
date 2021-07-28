@@ -22,7 +22,7 @@
                                 <tr>
                                     <td>{{ $transaction->id }}</td>
                                     <td>${{ number_format($transaction->amount / 100, 2) }}</td>
-                                    <td>{{ $transaction->user->name }}</td>
+                                    <td>{{ tap($transaction->user)->name }}</td>
                                     <td>
                                         <a href="{{ route('transactions.show', $transaction) }}"
                                             class="btn btn-sm btn-primary">View</a>
