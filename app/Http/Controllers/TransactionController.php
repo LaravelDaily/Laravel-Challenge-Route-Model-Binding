@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Transaction;
 
 class TransactionController extends Controller
 {
@@ -21,8 +22,9 @@ class TransactionController extends Controller
         return view('transactions.export', compact('transaction'));
     }
 
-    public function duplicate(Transaction $transaction)
+    public function duplicate(string $uuid)
     {
+        $transaction = Transaction::where('uuid',$uuid)->get()->first();
         return view('transactions.duplicate', compact('transaction'));
     }
 }
