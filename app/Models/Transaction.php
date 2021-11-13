@@ -9,6 +9,11 @@ class Transaction extends Model
 {
     use HasFactory;
 
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
+
     protected $fillable = ['uuid', 'amount', 'description', 'user_id'];
 
     public function user()
