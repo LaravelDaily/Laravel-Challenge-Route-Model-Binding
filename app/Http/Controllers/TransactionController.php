@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
+
 class TransactionController extends Controller
 {
     public function index()
@@ -21,8 +23,10 @@ class TransactionController extends Controller
         return view('transactions.export', compact('transaction'));
     }
 
-    public function duplicate(Transaction $transaction)
+    public function duplicate(string $uuid)
     {
+        $transaction = Transaction::where('uuid', $uuid)->firstOrFail();
+        
         return view('transactions.duplicate', compact('transaction'));
     }
 }
