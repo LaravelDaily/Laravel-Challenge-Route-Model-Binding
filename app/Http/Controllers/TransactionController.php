@@ -12,17 +12,17 @@ class TransactionController extends Controller
         return view('transactions.index', compact('transactions'));
     }
 
-    public function show(Transaction $transaction)
+    public function show(Transaction $transactions)
     {
         return view('transactions.show', compact('transaction'));
     }
 
-    public function export(Transaction $transaction)
+    public function export(Transaction $transactions)
     {
         return view('transactions.export', compact('transaction'));
     }
 
-    public function duplicate(Transaction $transaction)
+    public function duplicate(Transaction $transactions)
     {
         return view('transactions.duplicate', compact('transaction'));
     }
