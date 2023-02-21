@@ -23,9 +23,9 @@ class TransactionController extends Controller
         return view('transactions.export', compact('transaction'));
     }
 
-    public function duplicate($transaction)
+    public function duplicate(Transaction $transaction)
     {
-        $transaction = Transaction::where('uuid',$transaction)->first();
+        // $transaction = Transaction::where('uuid',$transaction)->first();
         return view('transactions.duplicate', compact('transaction'));
     }
 }

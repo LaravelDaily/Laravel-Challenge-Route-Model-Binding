@@ -20,7 +20,7 @@ Route::get('transactions/{transaction}/export', //paramenter name changed
     [TransactionController::class, 'export'])
     ->name('transactions.export');
 
-Route::get('transactions/{transaction}/duplicate',
+Route::get('transactions/{transaction:uuid}/duplicate',
     [TransactionController::class, 'duplicate'])
     ->name('transactions.duplicate');
 Route::resource('transactions', TransactionController::class);
