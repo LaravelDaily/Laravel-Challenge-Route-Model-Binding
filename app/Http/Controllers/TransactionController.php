@@ -8,14 +8,13 @@ class TransactionController extends Controller
 {
     public function index()
     {
-        $transactions = \App\Models\Transaction::with('user')->get();
+        $transactions = Transaction::with('user')->get();
 
         return view('transactions.index', compact('transactions'));
     }
 
-    public function show($id)
+    public function show(Transaction $transaction)
     {
-        $transaction = Transaction::findOrFail($id);
         return view('transactions.show', compact('transaction'));
     }
 
