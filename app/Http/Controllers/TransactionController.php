@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Transaction;
 
 class TransactionController extends Controller
 {
     public function index()
     {
-        $transactions = \App\Models\Transaction::with('user')->get();
+        $transactions = Transaction::with('user')->get();
 
         return view('transactions.index', compact('transactions'));
     }
@@ -16,13 +17,16 @@ class TransactionController extends Controller
         return view('transactions.show', compact('transaction'));
     }
 
-    public function export(Transaction $transaction)
+    public function export(string $transaction)
     {
+        $transaction = Transaction::find($transaction);
         return view('transactions.export', compact('transaction'));
     }
 
-    public function duplicate(Transaction $transaction)
+    public function duplicate(string $transaction)
     {
+        $transaction = Transaction::where("uuid", $transaction)->first();
+
         return view('transactions.duplicate', compact('transaction'));
     }
 }
